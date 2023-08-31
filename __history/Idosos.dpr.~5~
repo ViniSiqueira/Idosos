@@ -1,0 +1,21 @@
+program Idosos;
+
+uses
+  Vcl.Forms,
+  uFormPrincipal in 'uFormPrincipal.pas' {Form1},
+  cBuscaCEP in 'API\CEP\cBuscaCEP.pas',
+  cCadastroCliente in 'Cadastros\Clientes\cCadastroCliente.pas',
+  uCadastroClientes in 'Cadastros\Clientes\uCadastroClientes.pas',
+  uDtmConexao in 'DataModule\uDtmConexao.pas' {dtmConexao: TDataModule},
+  uEnum in 'Herança\uEnum.pas',
+  uFrmHeranca in 'Herança\uFrmHeranca.pas' {frmHeranca};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TdtmConexao, dtmConexao);
+  Application.CreateForm(TfrmHeranca, frmHeranca);
+  Application.Run;
+end.
