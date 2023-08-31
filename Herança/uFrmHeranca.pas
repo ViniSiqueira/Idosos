@@ -143,7 +143,7 @@ begin
       ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavegator, pgcPrincipal, true);
       ControlarIndiceTab(pgcPrincipal, 0);
       LimparCampos;
-      qryLista.Refresh;
+      qryLista.Requery;
     end;
   finally
     FEstadoCadastro := ecNenhum;

@@ -25,5 +25,8 @@ begin
   Application.CreateForm(TdtmConexao, dtmConexao);
   Application.CreateForm(TfrmCadastroClientes, frmCadastroClientes);
   Application.CreateForm(TfrmCadastroClientes, frmCadastroClientes);
+  Application.CreateForm(TfrmCadastroClientes, frmCadastroClientes);
+  Application.CreateForm(TfrmCadastroClientes, frmCadastroClientes);
+  Application.CreateForm(TfrmCadastroClientes, frmCadastroClientes);
   Application.Run;
 end.
