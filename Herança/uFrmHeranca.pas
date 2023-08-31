@@ -97,12 +97,25 @@ procedure TfrmHeranca.ControlarIndiceTab(pgcPrincipal: TPageControl; indice: Int
 begin
   if pgcPrincipal.Pages[indice].TabVisible  then
     pgcPrincipal.TabIndex := indice;
+
+  if pgcPrincipal.pages[indice].name = 'tbLista' then
+  begin
+    pgcPrincipal.pages[indice].TabVisible := True;
+    pgcPrincipal.pages[indice+1].TabVisible := False;
+  end
+  else
+  begin
+    pgcPrincipal.pages[indice].TabVisible := True;
+    pgcPrincipal.pages[indice-1].TabVisible := False;
+  end;
+
 end;
 
 procedure TfrmHeranca.btnAlterarClick(Sender: TObject);
 begin
   try
     ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavegator, pgcPrincipal, false);
+    ControlarIndiceTab(pgcPrincipal,1);
     VerificarAlteracaoRegistro;
   finally
     FEstadoCadastro := ecAlterar;
@@ -117,7 +130,7 @@ begin
       ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavegator, pgcPrincipal, true);
       ControlarIndiceTab(pgcPrincipal, 0);
       LimparCampos;
-      qryLista.Refresh;
+      qryLista.Requery;
     end
   finally
     FEstadoCadastro := ecNenhum;
@@ -154,6 +167,7 @@ procedure TfrmHeranca.btnNovoClick(Sender: TObject);
 begin
   try
     ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar, btnNavegator, pgcPrincipal, false);
+    ControlarIndiceTab(pgcPrincipal,1);
     LimparCampos;
   finally
     FEstadoCadastro := ecNovo;
