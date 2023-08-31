@@ -15,6 +15,7 @@ type
     N1: TMenuItem;
     procedure menuFecharClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure menuClientesClick(Sender: TObject);
   private
     procedure CriarConexaoComBanco;
     { Private declarations }
@@ -27,6 +28,9 @@ var
 
 implementation
 
+uses
+  uCadastroClientes;
+
 {$R *.dfm}
 
 procedure TfrmMenuPrincipal.FormCreate(Sender: TObject);
@@ -34,6 +38,13 @@ begin
   CriarConexaoComBanco;
 end;
 
+
+procedure TfrmMenuPrincipal.menuClientesClick(Sender: TObject);
+begin
+  frmCadastroClientes := TfrmCadastroClientes.Create(self);
+  frmCadastroClientes.ShowModal;
+  frmCadastroClientes.Release;
+end;
 
 procedure TfrmMenuPrincipal.menuFecharClick(Sender: TObject);
 begin

@@ -1,0 +1,162 @@
+inherited frmCadastroClientes: TfrmCadastroClientes
+  Caption = 'frmCadCliente'
+  ClientHeight = 337
+  ClientWidth = 733
+  ExplicitWidth = 745
+  ExplicitHeight = 375
+  TextHeight = 13
+  inherited pnlRodape: TPanel
+    Top = 300
+    Width = 733
+    inherited btnNavegator: TDBNavigator
+      Hints.Strings = ()
+    end
+    inherited brnFechar: TBitBtn
+      Left = 627
+    end
+  end
+  inherited pgcPrincipal: TPageControl
+    Width = 733
+    Height = 300
+    inherited tbLista: TTabSheet
+      ExplicitWidth = 725
+      ExplicitHeight = 272
+      inherited pnlCabecalho: TPanel
+        Width = 725
+      end
+      inherited gridLista: TDBGrid
+        Width = 725
+        Height = 223
+      end
+    end
+    inherited tbManutencao: TTabSheet
+      ExplicitWidth = 725
+      ExplicitHeight = 272
+      object edtCodigo: TLabeledEdit
+        Tag = 1
+        Left = 3
+        Top = 20
+        Width = 115
+        Height = 21
+        EditLabel.Width = 33
+        EditLabel.Height = 13
+        EditLabel.Caption = 'C'#243'digo'
+        MaxLength = 10
+        NumbersOnly = True
+        ReadOnly = True
+        TabOrder = 0
+        Text = ''
+      end
+      object edtDataNascimento: TDateEdit
+        Left = 523
+        Top = 204
+        Width = 117
+        Height = 21
+        DialogTitle = 'Selecione a data'
+        NumGlyphs = 2
+        CalendarStyle = csDialog
+        TabOrder = 1
+      end
+      object edtNome: TLabeledEdit
+        Left = 3
+        Top = 65
+        Width = 494
+        Height = 21
+        EditLabel.Width = 27
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Nome'
+        MaxLength = 50
+        TabOrder = 2
+        Text = ''
+      end
+      object edtEndereco: TLabeledEdit
+        Left = 3
+        Top = 113
+        Width = 494
+        Height = 21
+        EditLabel.Width = 45
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Endere'#231'o'
+        MaxLength = 250
+        TabOrder = 3
+        Text = ''
+      end
+      object edtCidade: TLabeledEdit
+        Left = 3
+        Top = 158
+        Width = 494
+        Height = 21
+        EditLabel.Width = 33
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Cidade'
+        MaxLength = 250
+        TabOrder = 4
+        Text = ''
+      end
+      object edtEmail: TLabeledEdit
+        Left = 3
+        Top = 201
+        Width = 494
+        Height = 21
+        EditLabel.Width = 24
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Email'
+        MaxLength = 250
+        TabOrder = 5
+        Text = ''
+      end
+      object edtTelefone: TMaskEdit
+        Left = 523
+        Top = 158
+        Width = 116
+        Height = 21
+        EditMask = '(99)9999-9999;1;_'
+        MaxLength = 13
+        TabOrder = 6
+        Text = '(  )    -    '
+      end
+      object edtBairro: TLabeledEdit
+        Left = 520
+        Top = 113
+        Width = 117
+        Height = 21
+        EditLabel.Width = 28
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Bairro'
+        MaxLength = 100
+        TabOrder = 7
+        Text = ''
+      end
+      object edtCep: TMaskEdit
+        Left = 520
+        Top = 68
+        Width = 63
+        Height = 21
+        EditMask = '99999-999;1;_'
+        MaxLength = 9
+        TabOrder = 8
+        Text = '     -   '
+      end
+      object edtEstado: TLabeledEdit
+        Left = 601
+        Top = 68
+        Width = 37
+        Height = 21
+        EditLabel.Width = 33
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Estado'
+        MaxLength = 2
+        TabOrder = 9
+        Text = ''
+      end
+    end
+  end
+  inherited dtsLista: TDataSource
+    Left = 620
+  end
+  inherited qryLista: TADOQuery
+    SQL.Strings = (
+      'SELECT * FROM CLIENTES')
+    Left = 564
+  end
+end

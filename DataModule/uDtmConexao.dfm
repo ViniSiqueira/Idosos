@@ -1,21 +1,14 @@
-object DataModule1: TDataModule1
+object dtmConexao: TdtmConexao
   Height = 480
   Width = 640
-  object conexaoDB: TZConnection
-    ControlsCodePage = cCP_UTF16
-    Catalog = ''
-    Properties.Strings = (
-      'RawStringEncoding=DB_CP')
-    TransactIsolationLevel = tiReadCommitted
-    SQLHourGlass = True
-    HostName = 'DESKTOP-1H3B8MV\SQLEXPRESS'
-    Port = 1433
-    Database = 'VINICIUS_PRD'
-    User = ''
-    Password = ''
-    Protocol = 'mssql'
-    LibraryLocation = 'C:\Users\vinic\Documents\Delphi\Idosos\ntwdblib.dll'
-    Left = 128
-    Top = 128
+  object conexaoDB: TADOConnection
+    ConnectionString = 
+      'Provider=SQLNCLI11.1;Integrated Security=SSPI;Persist Security I' +
+      'nfo=False;User ID="";Initial Catalog=IDOSOS_PRD;Data Source=DESK' +
+      'TOP-1H3B8MV\SQLEXPRESS;Initial File Name="";Server SPN="";'
+    LoginPrompt = False
+    Provider = 'SQLNCLI11.1'
+    Left = 232
+    Top = 144
   end
 end

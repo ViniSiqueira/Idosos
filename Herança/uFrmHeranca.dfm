@@ -23,6 +23,8 @@ object frmHeranca: TfrmHeranca
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 0
+    ExplicitTop = 502
+    ExplicitWidth = 1138
     DesignSize = (
       1142
       37)
@@ -215,7 +217,7 @@ object frmHeranca: TfrmHeranca
       TabOrder = 5
     end
     object brnFechar: TBitBtn
-      Left = 1040
+      Left = 1036
       Top = 6
       Width = 75
       Height = 25
@@ -250,7 +252,7 @@ object frmHeranca: TfrmHeranca
         22C30D1FC20311B401059FFF00FFFF00FFFF00FFFF00FFFF00FF}
       TabOrder = 6
       OnClick = brnFecharClick
-      ExplicitLeft = 1048
+      ExplicitLeft = 1032
     end
   end
   object pgcPrincipal: TPageControl
@@ -261,18 +263,19 @@ object frmHeranca: TfrmHeranca
     ActivePage = tbLista
     Align = alClient
     TabOrder = 1
-    ExplicitWidth = 1146
-    ExplicitHeight = 504
+    ExplicitWidth = 1138
+    ExplicitHeight = 502
     object tbLista: TTabSheet
       Caption = 'Lista'
       object pnlCabecalho: TPanel
         Left = 0
         Top = 0
-        Width = 1138
+        Width = 1134
         Height = 49
         Align = alTop
         BevelOuter = bvNone
         TabOrder = 0
+        ExplicitWidth = 1130
         object lblIndice: TLabel
           Left = 5
           Top = -1
@@ -303,8 +306,8 @@ object frmHeranca: TfrmHeranca
       object gridLista: TDBGrid
         Left = 0
         Top = 49
-        Width = 1138
-        Height = 427
+        Width = 1134
+        Height = 426
         Align = alClient
         DataSource = dtsLista
         TabOrder = 1
@@ -322,14 +325,13 @@ object frmHeranca: TfrmHeranca
       ImageIndex = 1
     end
   end
-  object qryLista: TZQuery
-    Params = <>
-    Left = 892
+  object dtsLista: TDataSource
+    Left = 948
     Top = 24
   end
-  object dtsLista: TDataSource
-    DataSet = qryLista
-    Left = 948
+  object qryLista: TADOQuery
+    Parameters = <>
+    Left = 900
     Top = 24
   end
 end

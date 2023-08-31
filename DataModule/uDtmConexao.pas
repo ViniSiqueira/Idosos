@@ -3,11 +3,12 @@ unit uDtmConexao;
 interface
 
 uses
-  System.SysUtils, System.Classes, ZAbstractConnection, ZConnection;
+  System.SysUtils, System.Classes, ZAbstractConnection, ZConnection, Data.DB,
+  Data.Win.ADODB;
 
 type
-  TDataModule1 = class(TDataModule)
-    conexaoDB: TZConnection;
+  TdtmConexao = class(TDataModule)
+    conexaoDB: TADOConnection;
   private
     { Private declarations }
   public
@@ -15,7 +16,7 @@ type
   end;
 
 var
-  DataModule1: TDataModule1;
+  dtmConexao: TdtmConexao;
 
 implementation
 

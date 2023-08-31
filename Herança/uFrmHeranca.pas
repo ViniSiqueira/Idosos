@@ -6,7 +6,8 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.ExtCtrls, Data.DB,
   Vcl.Grids, Vcl.DBGrids, Vcl.DBCtrls, Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask,
-  ZAbstractRODataset, ZAbstractDataset, ZDataset, uEnum, RxToolEdit;
+  ZAbstractRODataset, ZAbstractDataset, ZDataset, uEnum, RxToolEdit,
+  Data.Win.ADODB;
 
 type
   TfrmHeranca = class(TForm)
@@ -26,8 +27,8 @@ type
     lblIndice: TLabel;
     btmPesquisar: TBitBtn;
     mskPesquisar: TMaskEdit;
-    qryLista: TZQuery;
     dtsLista: TDataSource;
+    qryLista: TADOQuery;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure mskPesquisarChange(Sender: TObject);
@@ -84,7 +85,7 @@ procedure TfrmHeranca.FormShow(Sender: TObject);
 begin
   if (qryLista.SQL.Text <> '') then
   begin
-    qryLista.IndexFieldNames := FIndiceAtual;
+    qryLista.IndexName := FIndiceAtual;
     ExibirCampoPesquisa(FIndiceAtual, lblIndice);
     qryLista.Open;
   end;
@@ -203,7 +204,7 @@ end;
 procedure TfrmHeranca.gridListaTitleClick(Column: TColumn);
 begin
   FIndiceAtual := Column.FieldName;
-  qryLista.IndexFieldNames := FIndiceAtual;
+  qryLista.IndexName := FIndiceAtual;
   ExibirCampoPesquisa(FIndiceAtual, lblIndice);
 end;
 
