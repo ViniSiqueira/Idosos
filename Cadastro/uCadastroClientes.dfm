@@ -1,37 +1,123 @@
 inherited frmCadastroClientes: TfrmCadastroClientes
-  Caption = 'frmCadCliente'
+  Caption = 'Cadastro de Clientes'
   ClientHeight = 337
   ClientWidth = 733
-  ExplicitWidth = 745
-  ExplicitHeight = 375
+  ExplicitWidth = 749
+  ExplicitHeight = 376
   TextHeight = 13
   inherited pnlRodape: TPanel
     Top = 300
     Width = 733
+    ExplicitTop = 300
+    ExplicitWidth = 733
     inherited btnNavegator: TDBNavigator
       Hints.Strings = ()
     end
     inherited brnFechar: TBitBtn
       Left = 627
+      ExplicitLeft = 627
     end
   end
   inherited pgcPrincipal: TPageControl
     Width = 733
     Height = 300
+    ExplicitWidth = 733
+    ExplicitHeight = 300
     inherited tbLista: TTabSheet
       ExplicitWidth = 725
       ExplicitHeight = 272
       inherited pnlCabecalho: TPanel
         Width = 725
+        ExplicitWidth = 725
       end
       inherited gridLista: TDBGrid
         Width = 725
         Height = 223
+        Columns = <
+          item
+            Expanded = False
+            FieldName = 'CLIENTE_ID'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'NOME'
+            Width = 250
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'ENDERECO'
+            Width = 250
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'CIDADE'
+            Width = 250
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'BAIRRO'
+            Width = 150
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'ESTADO'
+            Width = 50
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'CEP'
+            Width = 80
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'TELEFONE'
+            Width = 90
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'EMAIL'
+            Width = 250
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'DATA_NASCIMENTO'
+            Visible = True
+          end>
       end
     end
     inherited tbManutencao: TTabSheet
       ExplicitWidth = 725
       ExplicitHeight = 272
+      object lblCEP: TLabel
+        Left = 520
+        Top = 49
+        Width = 19
+        Height = 13
+        Caption = 'CEP'
+      end
+      object lblTelefone: TLabel
+        Left = 520
+        Top = 141
+        Width = 42
+        Height = 13
+        Caption = 'Telefone'
+      end
+      object lblDataNascimento: TLabel
+        Left = 520
+        Top = 185
+        Width = 96
+        Height = 13
+        Caption = 'Data de Nascimento'
+      end
       object edtCodigo: TLabeledEdit
         Tag = 1
         Left = 3
@@ -136,6 +222,7 @@ inherited frmCadastroClientes: TfrmCadastroClientes
         MaxLength = 9
         TabOrder = 8
         Text = '     -   '
+        OnExit = edtCepExit
       end
       object edtEstado: TLabeledEdit
         Left = 601
@@ -157,8 +244,57 @@ inherited frmCadastroClientes: TfrmCadastroClientes
   end
   inherited qryLista: TADOQuery
     Connection = dtmConexao.conexaoDB
+    CursorType = ctStatic
     SQL.Strings = (
       'SELECT * FROM CLIENTES')
     Left = 564
+    object qryListaCLIENTE_ID: TAutoIncField
+      DisplayLabel = 'C'#243'digo'
+      FieldName = 'CLIENTE_ID'
+      ReadOnly = True
+    end
+    object qryListaNOME: TStringField
+      DisplayLabel = 'Nome'
+      FieldName = 'NOME'
+      Size = 50
+    end
+    object qryListaENDERECO: TStringField
+      DisplayLabel = 'Endere'#231'o'
+      FieldName = 'ENDERECO'
+      Size = 250
+    end
+    object qryListaCIDADE: TStringField
+      DisplayLabel = 'Cidade'
+      FieldName = 'CIDADE'
+      Size = 250
+    end
+    object qryListaBAIRRO: TStringField
+      DisplayLabel = 'Bairro'
+      FieldName = 'BAIRRO'
+      Size = 100
+    end
+    object qryListaESTADO: TStringField
+      DisplayLabel = 'Estado'
+      FieldName = 'ESTADO'
+      Size = 2
+    end
+    object qryListaCEP: TStringField
+      FieldName = 'CEP'
+      Size = 10
+    end
+    object qryListaTELEFONE: TStringField
+      DisplayLabel = 'Telefone'
+      FieldName = 'TELEFONE'
+      Size = 14
+    end
+    object qryListaEMAIL: TStringField
+      DisplayLabel = 'Email'
+      FieldName = 'EMAIL'
+      Size = 250
+    end
+    object qryListaDATA_NASCIMENTO: TDateTimeField
+      DisplayLabel = 'Data de Nascimento'
+      FieldName = 'DATA_NASCIMENTO'
+    end
   end
 end
