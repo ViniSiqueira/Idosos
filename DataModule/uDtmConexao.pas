@@ -3,7 +3,7 @@ unit uDtmConexao;
 interface
 
 uses
-  System.SysUtils, System.Classes, ZAbstractConnection, ZConnection, Data.DB,
+  System.SysUtils, System.Classes, Data.DB,
   Data.Win.ADODB;
 
 type

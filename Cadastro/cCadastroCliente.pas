@@ -3,8 +3,7 @@ unit cCadastroCliente;
 interface
 
 uses
-  System.Classes, Vcl.Controls, Vcl.ExtCtrls, Vcl.Dialogs, Data.Win.ADODB,
-  ZAbstractConnection, ZConnection, ZAbstractRODataset, ZAbstractDataset, ZDataset;
+  System.Classes, Vcl.Controls, Vcl.ExtCtrls, Vcl.Dialogs, Data.Win.ADODB;
 
 type
   TCadastroCliente = class
