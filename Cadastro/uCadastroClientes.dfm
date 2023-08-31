@@ -2,33 +2,33 @@ inherited frmCadastroClientes: TfrmCadastroClientes
   Caption = 'Cadastro de Clientes'
   ClientHeight = 337
   ClientWidth = 733
-  ExplicitWidth = 749
-  ExplicitHeight = 376
+  ExplicitWidth = 745
+  ExplicitHeight = 375
   TextHeight = 13
   inherited pnlRodape: TPanel
     Top = 300
     Width = 733
-    ExplicitTop = 300
-    ExplicitWidth = 733
+    ExplicitTop = 299
+    ExplicitWidth = 729
     inherited btnNavegator: TDBNavigator
       Hints.Strings = ()
     end
     inherited brnFechar: TBitBtn
       Left = 627
-      ExplicitLeft = 627
+      ExplicitLeft = 623
     end
   end
   inherited pgcPrincipal: TPageControl
     Width = 733
     Height = 300
-    ExplicitWidth = 733
-    ExplicitHeight = 300
+    ExplicitWidth = 729
+    ExplicitHeight = 299
     inherited tbLista: TTabSheet
       ExplicitWidth = 725
       ExplicitHeight = 272
       inherited pnlCabecalho: TPanel
         Width = 725
-        ExplicitWidth = 725
+        ExplicitWidth = 721
       end
       inherited gridLista: TDBGrid
         Width = 725
@@ -141,7 +141,7 @@ inherited frmCadastroClientes: TfrmCadastroClientes
         DialogTitle = 'Selecione a data'
         NumGlyphs = 2
         CalendarStyle = csDialog
-        TabOrder = 1
+        TabOrder = 8
       end
       object edtNome: TLabeledEdit
         Left = 3
@@ -152,7 +152,7 @@ inherited frmCadastroClientes: TfrmCadastroClientes
         EditLabel.Height = 13
         EditLabel.Caption = 'Nome'
         MaxLength = 50
-        TabOrder = 2
+        TabOrder = 1
         Text = ''
       end
       object edtEndereco: TLabeledEdit
@@ -164,7 +164,7 @@ inherited frmCadastroClientes: TfrmCadastroClientes
         EditLabel.Height = 13
         EditLabel.Caption = 'Endere'#231'o'
         MaxLength = 250
-        TabOrder = 3
+        TabOrder = 4
         Text = ''
       end
       object edtCidade: TLabeledEdit
@@ -176,7 +176,7 @@ inherited frmCadastroClientes: TfrmCadastroClientes
         EditLabel.Height = 13
         EditLabel.Caption = 'Cidade'
         MaxLength = 250
-        TabOrder = 4
+        TabOrder = 6
         Text = ''
       end
       object edtEmail: TLabeledEdit
@@ -188,7 +188,7 @@ inherited frmCadastroClientes: TfrmCadastroClientes
         EditLabel.Height = 13
         EditLabel.Caption = 'Email'
         MaxLength = 250
-        TabOrder = 5
+        TabOrder = 9
         Text = ''
       end
       object edtTelefone: TMaskEdit
@@ -198,7 +198,7 @@ inherited frmCadastroClientes: TfrmCadastroClientes
         Height = 21
         EditMask = '(99)9999-9999;1;_'
         MaxLength = 13
-        TabOrder = 6
+        TabOrder = 7
         Text = '(  )    -    '
       end
       object edtBairro: TLabeledEdit
@@ -210,7 +210,7 @@ inherited frmCadastroClientes: TfrmCadastroClientes
         EditLabel.Height = 13
         EditLabel.Caption = 'Bairro'
         MaxLength = 100
-        TabOrder = 7
+        TabOrder = 5
         Text = ''
       end
       object edtCep: TMaskEdit
@@ -220,7 +220,7 @@ inherited frmCadastroClientes: TfrmCadastroClientes
         Height = 21
         EditMask = '99999-999;1;_'
         MaxLength = 9
-        TabOrder = 8
+        TabOrder = 2
         Text = '     -   '
         OnExit = edtCepExit
       end
@@ -233,7 +233,7 @@ inherited frmCadastroClientes: TfrmCadastroClientes
         EditLabel.Height = 13
         EditLabel.Caption = 'Estado'
         MaxLength = 2
-        TabOrder = 9
+        TabOrder = 3
         Text = ''
       end
     end
