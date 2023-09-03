@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus, uBanheiro;
 
 type
   TfrmMenuPrincipal = class(TForm)
@@ -12,12 +12,12 @@ type
     menuCadatros: TMenuItem;
     menuClientes: TMenuItem;
     menuFechar: TMenuItem;
-    N1: TMenuItem;
+    menuNecessidades: TMenuItem;
+    menuBanheiro: TMenuItem;
     procedure menuFecharClick(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
     procedure menuClientesClick(Sender: TObject);
+    procedure menuBanheiroClick(Sender: TObject);
   private
-    procedure CriarConexaoComBanco;
     { Private declarations }
   public
     { Public declarations }
@@ -33,11 +33,12 @@ uses
 
 {$R *.dfm}
 
-procedure TfrmMenuPrincipal.FormCreate(Sender: TObject);
+procedure TfrmMenuPrincipal.menuBanheiroClick(Sender: TObject);
 begin
-  CriarConexaoComBanco;
+  frmBanheiro := TfrmBanheiro.Create(self);
+  frmBanheiro.ShowModal;
+  frmBanheiro.Release;
 end;
-
 
 procedure TfrmMenuPrincipal.menuClientesClick(Sender: TObject);
 begin
@@ -49,11 +50,6 @@ end;
 procedure TfrmMenuPrincipal.menuFecharClick(Sender: TObject);
 begin
   application.Terminate;
-end;
-
-procedure TfrmMenuPrincipal.CriarConexaoComBanco;
-begin
-
 end;
 
 end.

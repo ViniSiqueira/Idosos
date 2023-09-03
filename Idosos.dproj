@@ -120,6 +120,11 @@
             <Form>frmCadastroClientes</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="Cadastro\uBanheiro.pas">
+            <Form>frmBanheiro</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Cadastro\cBanheiro.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

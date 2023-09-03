@@ -2,8 +2,8 @@ object frmHeranca: TfrmHeranca
   Left = 0
   Top = 0
   Caption = 'Heran'#231'a'
-  ClientHeight = 540
-  ClientWidth = 1142
+  ClientHeight = 539
+  ClientWidth = 1138
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,16 +17,14 @@ object frmHeranca: TfrmHeranca
   TextHeight = 13
   object pnlRodape: TPanel
     Left = 0
-    Top = 503
-    Width = 1142
+    Top = 502
+    Width = 1138
     Height = 37
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitTop = 502
-    ExplicitWidth = 1138
     DesignSize = (
-      1142
+      1138
       37)
     object btnNovo: TBitBtn
       Left = 4
@@ -217,7 +215,7 @@ object frmHeranca: TfrmHeranca
       TabOrder = 5
     end
     object brnFechar: TBitBtn
-      Left = 1036
+      Left = 1032
       Top = 6
       Width = 75
       Height = 25
@@ -252,19 +250,16 @@ object frmHeranca: TfrmHeranca
         22C30D1FC20311B401059FFF00FFFF00FFFF00FFFF00FFFF00FF}
       TabOrder = 6
       OnClick = brnFecharClick
-      ExplicitLeft = 1032
     end
   end
   object pgcPrincipal: TPageControl
     Left = 0
     Top = 0
-    Width = 1142
-    Height = 503
+    Width = 1138
+    Height = 502
     ActivePage = tbLista
     Align = alClient
     TabOrder = 1
-    ExplicitWidth = 1138
-    ExplicitHeight = 502
     object tbLista: TTabSheet
       Caption = 'Lista'
       object pnlCabecalho: TPanel

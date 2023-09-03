@@ -1,0 +1,176 @@
+unit cBanheiro;
+
+interface
+
+uses
+  System.Classes, Vcl.Controls, Vcl.ExtCtrls, Vcl.Dialogs, Data.Win.ADODB;
+
+type
+  TBanheiro = class
+  private
+    FConexaoDB: TADOConnection;
+    FBanheiroId: Integer;
+    FQtdDiurese: Integer;
+    FDiurese: String;
+    FQtdEvacuacao: Integer;
+    FEvacuacao: String;
+    FDataBanheiro: TDateTime;
+    FClienteId: Integer;
+
+
+  public
+    constructor Create(conexao: TADOConnection);
+    destructor Destroy; override;
+
+    function Inserir: Boolean;
+    function Atualizar: Boolean;
+    function Apagar(Id: Integer): Boolean;
+    function Selecionar(Id: Integer): Boolean;
+
+    property ConexaoDB: TADOConnection read FConexaoDB write FConexaoDB;
+    property BanheiroId: Integer read FBanheiroId write FBanheiroId;
+    property QtdDiurese: Integer read FQtdDiurese write FQtdDiurese;
+    property Diurese: String read FDiurese write FDiurese;
+    property QtdEvacuacao: Integer read FQtdEvacuacao write FQtdEvacuacao;
+    property Evacuacao: String read FEvacuacao write FEvacuacao;
+    property DataBanheiro: TDateTime read FDataBanheiro write FDataBanheiro;
+    property ClienteId: Integer read FClienteId write FClienteId;
+  end;
+
+implementation
+
+uses
+  System.SysUtils;
+
+{ TBanheiro }
+
+function TBanheiro.Apagar(Id: Integer): Boolean;
+begin
+  var qryExcluirBanheiro := TADOQuery.Create(nil);
+
+  try
+    Result := True;
+    qryExcluirBanheiro.Connection := FConexaoDB;
+    qryExcluirBanheiro.SQL.Clear;
+    qryExcluirBanheiro.SQL.Add('DELETE BANHEIRO WHERE BANHEIRO_ID = :BANHEIRO_ID');
+    qryExcluirBanheiro.Parameters.ParamByName('BANHEIRO_ID').Value  := Id;
+
+    try
+      qryExcluirBanheiro.ExecSQL;
+    except
+      Result := False;
+    end;
+
+  finally
+    if Assigned(qryExcluirBanheiro) then
+      FreeAndNil(qryExcluirBanheiro);
+  end;
+end;
+
+function TBanheiro.Atualizar: Boolean;
+begin
+  var qryAtualizarBanheiro := TADOQuery.Create(nil);
+
+  try
+    Result := True;
+    qryAtualizarBanheiro.Connection := FConexaoDB;
+    qryAtualizarBanheiro.SQL.Clear;
+    qryAtualizarBanheiro.SQL.Add('UPDATE BANHEIRO SET QTD_DIURESE = :QTD_DIURESE, QTD_EVACUACAO = :QTD_EVACUACAO, DIURESE = :DIURESE,');
+    qryAtualizarBanheiro.SQL.Add('EVACUACAO = :EVACUACAO, DATA_BANHEIRO = :DATA_BANHEIRO, CLIENTE_ID = :CLIENTE_ID');
+    qryAtualizarBanheiro.SQL.Add('WHERE BANHEIRO_ID = :BANHEIRO_ID');
+    qryAtualizarBanheiro.Parameters.ParamByName('BANHEIRO_ID').Value  := FBanheiroId;
+    qryAtualizarBanheiro.Parameters.ParamByName('QTD_DIURESE').Value  := FQtdDiurese;
+    qryAtualizarBanheiro.Parameters.ParamByName('QTD_EVACUACAO').Value  := FQtdEvacuacao;
+    qryAtualizarBanheiro.Parameters.ParamByName('DIURESE').Value  := FDiurese;
+    qryAtualizarBanheiro.Parameters.ParamByName('EVACUACAO').Value  := FEvacuacao;
+    qryAtualizarBanheiro.Parameters.ParamByName('DATA_BANHEIRO').Value  := FDataBanheiro;
+    qryAtualizarBanheiro.Parameters.ParamByName('CLIENTE_ID').Value  := FClienteId;
+
+    try
+      qryAtualizarBanheiro.ExecSQL;
+    except
+      Result := False;
+    end;
+
+  finally
+    if Assigned(qryAtualizarBanheiro) then
+      FreeAndNil(qryAtualizarBanheiro);
+  end;
+end;
+
+function TBanheiro.Inserir: Boolean;
+begin
+  var qryInserirBanheiro := TADOQuery.Create(nil);
+
+  try
+    Result := True;
+    qryInserirBanheiro.Connection := FConexaoDB;
+    qryInserirBanheiro.SQL.Clear;
+    qryInserirBanheiro.SQL.Add('INSERT INTO BANHEIRO(QTD_DIURESE, QTD_EVACUACAO, DIURESE, EVACUACAO, DATA_BANHEIRO, CLIENTE_ID)');
+    qryInserirBanheiro.SQL.Add('VALUES(:QTD_DIURESE, :QTD_EVACUACAO, :DIURESE, :EVACUACAO, :DATA_BANHEIRO, :CEP, :TELEFONE, :EMAIL, :DATA_NASCIMENTO)');
+    qryInserirBanheiro.Parameters.ParamByName('NOME').Value  := FNome;
+    qryInserirBanheiro.Parameters.ParamByName('ENDERECO').Value  := FEndereco;
+    qryInserirBanheiro.Parameters.ParamByName('CIDADE').Value  := FCidade;
+    qryInserirBanheiro.Parameters.ParamByName('BAIRRO').Value  := FBairro;
+    qryInserirBanheiro.Parameters.ParamByName('ESTADO').Value  := FEstado;
+    qryInserirBanheiro.Parameters.ParamByName('CEP').Value  := FCEP;
+    qryInserirBanheiro.Parameters.ParamByName('TELEFONE').Value  := FTelefone;
+    qryInserirBanheiro.Parameters.ParamByName('EMAIL').Value  := FEmail;
+    qryInserirBanheiro.Parameters.ParamByName('DATA_NASCIMENTO').Value  := FDataNascimento;
+
+    try
+      qryInserirBanheiro.ExecSQL;
+    except
+      Result := False;
+    end;
+
+  finally
+    if Assigned(qryInserirBanheiro) then
+      FreeAndNil(qryInserirBanheiro);
+  end;
+end;
+
+function TBanheiro.Selecionar(Id: Integer): Boolean;
+begin
+  var tblBanheiro := TADOQuery.Create(nil);
+
+  try
+    Result := True;
+    tblBanheiro.Connection := FConexaoDB;
+    tblBanheiro.SQL.Clear;
+    tblBanheiro.SQL.Add('SELECT * FROM BANHEIRO WHERE BANHEIRO_ID = :BANHEIRO_ID');
+    tblBanheiro.Parameters.ParamByName('BANHEIRO_ID').Value  := Id;
+
+    try
+      tblBanheiro.Open;
+
+      FBanheiroId := tblBanheiro.FieldByName('BANHEIRO_ID').AsInteger;
+      FQtdDiurese := tblBanheiro.FieldByName('QTD_DIURESE').AsInteger;
+      FDiurese := tblBanheiro.FieldByName('DIURESE').AsString;
+      FQtdEvacuacao := tblBanheiro.FieldByName('QTD_EVACUACAO').AsInteger;
+      FEvacuacao := tblBanheiro.FieldByName('EVACUACAO').AsString;
+      FDataBanheiro := tblBanheiro.FieldByName('DATA').AsDateTime;
+      FClienteId := tblBanheiro.FieldByName('CLIENTE_ID').AsInteger;
+
+    except
+      Result := False;
+    end;
+
+  finally
+    if Assigned(tblBanheiro) then
+      FreeAndNil(tblBanheiro);
+  end;
+end;
+
+constructor TBanheiro.Create(conexao: TADOConnection);
+begin
+  FConexaoDB := conexao;
+end;
+
+destructor TBanheiro.Destroy;
+begin
+
+  inherited;
+end;
+
+end.
