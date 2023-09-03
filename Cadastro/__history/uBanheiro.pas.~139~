@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uFrmHeranca, Data.DB, Data.Win.ADODB,
   Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.Mask, Vcl.ComCtrls, Vcl.DBCtrls,
-  Vcl.Buttons, Vcl.ExtCtrls, RxToolEdit, uDtmConexao, uEnum, cBanheiro;
+  Vcl.Buttons, Vcl.ExtCtrls, RxToolEdit, uDtmConexao, uEnum, cBanheiro, System.StrUtils;
 
 type
   TfrmBanheiro = class(TfrmHeranca)
@@ -33,6 +33,11 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnAlterarClick(Sender: TObject);
+    procedure gridListaDrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure gridListaDblClick(Sender: TObject);
+    procedure edtEvacuacaoChange(Sender: TObject);
+    procedure edtDiureseChange(Sender: TObject);
   private
     { Private declarations }
     oBanheiro : TBanheiro;
@@ -80,6 +85,28 @@ begin
   inherited;
 end;
 
+procedure TfrmBanheiro.edtDiureseChange(Sender: TObject);
+begin
+  if (edtEvacuacao.Text <> '') and (cbEvacuacao.Checked = False) then
+  begin
+    MessageDlg('Atenção! Para alterar a quantidade é necessário ter marcado o campo "Evacuou?"', mtInformation,[mbOk],0);
+    edtEvacuacao.Text := '';
+    abort;
+  end;
+
+end;
+
+procedure TfrmBanheiro.edtEvacuacaoChange(Sender: TObject);
+begin
+  if (edtEvacuacao.Text <> '') and (cbEvacuacao.Checked = False) then
+  begin
+    MessageDlg('Atenção! Para alterar a quantidade é necessário ter marcado o campo "Evacuou?"', mtInformation,[mbOk],0);
+    edtEvacuacao.Text := '';
+    abort;
+  end;
+
+end;
+
 procedure TfrmBanheiro.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   inherited;
@@ -101,6 +128,56 @@ begin
   qryClientes.Open;
 end;
 
+procedure TfrmBanheiro.gridListaDblClick(Sender: TObject);
+begin
+  if ((Sender as TDBGrid).DataSource.Dataset.IsEmpty) then
+    Exit;
+
+  (Sender as TDBGrid).DataSource.Dataset.Edit;
+
+  if ((Sender as TDBGrid).DataSource.Dataset.FieldByName('DIURESE').AsString = 'T') then
+    (Sender as TDBGrid).DataSource.Dataset.FieldByName('DIURESE').AsString := 'F'
+  else
+    (Sender as TDBGrid).DataSource.Dataset.FieldByName('DIURESE').AsString := 'T';
+
+  if ((Sender as TDBGrid).DataSource.Dataset.FieldByName('EVACUACAO').AsString = 'T') then
+    (Sender as TDBGrid).DataSource.Dataset.FieldByName('EVACUACAO').AsString := 'F'
+  else
+    (Sender as TDBGrid).DataSource.Dataset.FieldByName('EVACUACAO').AsString := 'T';
+
+  (Sender as TDBGrid).DataSource.Dataset.Post;
+
+  inherited;
+end;
+
+procedure TfrmBanheiro.gridListaDrawColumnCell(
+   Sender: TObject; const Rect: TRect; DataCol:
+   Integer; Column: TColumn; State: TGridDrawState);
+var
+  Check: Integer;
+  R: TRect;
+begin
+  inherited;
+
+  if ((Sender as TDBGrid).DataSource.Dataset.IsEmpty) then
+    Exit;
+
+  if (Column.FieldName = 'DIURESE') or (Column.FieldName = 'EVACUACAO') then
+  begin
+    TDBGrid(Sender).Canvas.FillRect(Rect);
+
+    if ((Sender as TDBGrid).DataSource.Dataset.FieldByName(Column.FieldName).AsString = 'T') then
+      Check := DFCS_CHECKED
+    else
+      Check := 0;
+
+    R := Rect;
+    InflateRect(R, -2, -2);
+    DrawFrameControl(TDBGrid(Sender).Canvas.Handle, R, DFC_BUTTON,
+      DFCS_BUTTONCHECK or Check);
+  end;
+end;
+
 function TfrmBanheiro.Salvar(estadoCadastro: TEstadoCadastro): Boolean;
 begin
   Result := False;
@@ -120,7 +197,7 @@ begin
   if cbEvacuacao.Checked then
     oBanheiro.Evacuacao := 'T'
   else
-    oBanheiro.Evacuacao := 'F'
+    oBanheiro.Evacuacao := 'F';
 
   oBanheiro.DataBanheiro := edtData.Date;
   oBanheiro.ClienteId := edtCliente.KeyValue;

@@ -14,13 +14,14 @@ inherited frmBanheiro: TfrmBanheiro
       Hints.Strings = ()
     end
     inherited brnFechar: TBitBtn
-      Left = 699
-      ExplicitLeft = 695
+      Left = 695
+      ExplicitLeft = 691
     end
   end
   inherited pgcPrincipal: TPageControl
     Width = 809
     Height = 268
+    ActivePage = tbManutencao
     ExplicitWidth = 805
     ExplicitHeight = 267
     inherited tbLista: TTabSheet
@@ -28,11 +29,12 @@ inherited frmBanheiro: TfrmBanheiro
       ExplicitHeight = 240
       inherited pnlCabecalho: TPanel
         Width = 801
-        ExplicitWidth = 801
+        ExplicitWidth = 797
       end
       inherited gridLista: TDBGrid
         Width = 801
         Height = 191
+        OnDrawColumnCell = gridListaDrawColumnCell
         Columns = <
           item
             Expanded = False
@@ -45,6 +47,7 @@ inherited frmBanheiro: TfrmBanheiro
             Visible = True
           end
           item
+            Alignment = taCenter
             Expanded = False
             FieldName = 'DIURESE'
             Visible = True
@@ -55,6 +58,7 @@ inherited frmBanheiro: TfrmBanheiro
             Visible = True
           end
           item
+            Alignment = taCenter
             Expanded = False
             FieldName = 'EVACUACAO'
             Visible = True
@@ -72,7 +76,7 @@ inherited frmBanheiro: TfrmBanheiro
           item
             Expanded = False
             FieldName = 'CLIENTE_ID'
-            Visible = True
+            Visible = False
           end>
       end
     end
@@ -89,7 +93,7 @@ inherited frmBanheiro: TfrmBanheiro
       object lblCliente: TLabel
         Left = 3
         Top = 117
-        Width = 62
+        Width = 54
         Height = 13
         Caption = 'Morador(a)'
       end
@@ -129,8 +133,9 @@ inherited frmBanheiro: TfrmBanheiro
         MaxLength = 2
         TabOrder = 2
         Text = ''
+        OnChange = edtDiureseChange
       end
-      object etdEvacuacao: TLabeledEdit
+      object edtEvacuacao: TLabeledEdit
         Left = 353
         Top = 20
         Width = 112
@@ -141,16 +146,17 @@ inherited frmBanheiro: TfrmBanheiro
         MaxLength = 2
         TabOrder = 3
         Text = ''
+        OnChange = edtEvacuacaoChange
       end
       object cbEvacuacao: TCheckBox
         Left = 200
-        Top = 21
+        Top = 22
         Width = 97
         Height = 17
         Caption = 'Evacuou?'
         TabOrder = 4
       end
-      object CheckBox1: TCheckBox
+      object cbDiurese: TCheckBox
         Left = 200
         Top = 75
         Width = 97
@@ -165,7 +171,7 @@ inherited frmBanheiro: TfrmBanheiro
         Height = 21
         KeyField = 'CLIENTE_ID'
         ListField = 'NOME'
-        ListSource = dtsLista
+        ListSource = dtsClientes
         TabOrder = 6
       end
     end
@@ -185,15 +191,15 @@ inherited frmBanheiro: TfrmBanheiro
       'LEFT JOIN CLIENTES ON BANHEIRO.CLIENTE_ID = CLIENTES.CLIENTE_ID')
     Left = 244
     Top = 200
-    object qryListaBANHEIRO_ID: TAutoIncField
-      DisplayLabel = 'C'#243'digo'
-      FieldName = 'BANHEIRO_ID'
-      ReadOnly = True
-    end
     object qryListaNOME: TStringField
       DisplayLabel = 'Morador(a)'
       FieldName = 'NOME'
       Size = 50
+    end
+    object qryListaBANHEIRO_ID: TAutoIncField
+      DisplayLabel = 'C'#243'digo'
+      FieldName = 'BANHEIRO_ID'
+      ReadOnly = True
     end
     object qryListaDIURESE: TStringField
       DisplayLabel = 'Diurese?'
