@@ -5,7 +5,7 @@ object dtmConexao: TdtmConexao
     ConnectionString = 
       'Provider=SQLNCLI11.1;Integrated Security=SSPI;Persist Security I' +
       'nfo=False;User ID="";Initial Catalog=IDOSOS_PRD;Data Source=DESK' +
-      'TOP-1H3B8MV\SQLEXPRESS;Initial File Name="";Server SPN="";'
+      'TOP-1H3B8MV\SQLEXPRESS;Initial File Name="";Server SPN=""'
     LoginPrompt = False
     Provider = 'SQLNCLI11.1'
     Left = 232

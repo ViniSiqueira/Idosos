@@ -110,11 +110,6 @@
             <Form>frmHeranca</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="DataModule\uDtmConexao.pas">
-            <Form>dtmConexao</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
         <DCCReference Include="Cadastro\cCadastroCliente.pas"/>
         <DCCReference Include="Cadastro\uCadastroClientes.pas">
             <Form>frmCadastroClientes</Form>
@@ -125,6 +120,11 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Cadastro\cBanheiro.pas"/>
+        <DCCReference Include="DataModule\uDtmConexao.pas">
+            <Form>dtmConexao</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

@@ -14,22 +14,21 @@ inherited frmCadastroClientes: TfrmCadastroClientes
       Hints.Strings = ()
     end
     inherited brnFechar: TBitBtn
-      Left = 627
-      ExplicitLeft = 623
+      Left = 623
+      ExplicitLeft = 619
     end
   end
   inherited pgcPrincipal: TPageControl
     Width = 733
     Height = 300
-    ActivePage = tbManutencao
-    ExplicitWidth = 733
-    ExplicitHeight = 300
+    ExplicitWidth = 729
+    ExplicitHeight = 299
     inherited tbLista: TTabSheet
       ExplicitWidth = 725
       ExplicitHeight = 272
       inherited pnlCabecalho: TPanel
         Width = 725
-        ExplicitWidth = 721
+        ExplicitWidth = 725
       end
       inherited gridLista: TDBGrid
         Width = 725

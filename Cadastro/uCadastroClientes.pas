@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uFrmHeranca, Data.DB, Data.Win.ADODB,
   Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.Mask, Vcl.ComCtrls, Vcl.DBCtrls,
-  Vcl.Buttons, Vcl.ExtCtrls, RxToolEdit,cCadastroCliente, uEnum;
+  Vcl.Buttons, Vcl.ExtCtrls, RxToolEdit,cCadastroCliente, uEnum, uDtmConexao;
 
 type
   TfrmCadastroClientes = class(TfrmHeranca)
@@ -53,7 +53,7 @@ var
 implementation
 
 uses
-  uDtmConexao, cBuscaCEP;
+  cBuscaCEP;
 
 {$R *.dfm}
 
