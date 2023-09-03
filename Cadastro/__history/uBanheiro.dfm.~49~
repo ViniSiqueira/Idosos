@@ -37,16 +37,15 @@ inherited frmBanheiro: TfrmBanheiro
         Columns = <
           item
             Expanded = False
-            FieldName = 'BANHEIRO_ID'
-            Visible = True
-          end
-          item
-            Expanded = False
             FieldName = 'NOME'
             Visible = True
           end
           item
-            Alignment = taCenter
+            Expanded = False
+            FieldName = 'BANHEIRO_ID'
+            Visible = True
+          end
+          item
             Expanded = False
             FieldName = 'DIURESE'
             Visible = True
@@ -74,6 +73,12 @@ inherited frmBanheiro: TfrmBanheiro
           item
             Expanded = False
             FieldName = 'CLIENTE_ID'
+            Visible = True
+          end
+          item
+            Expanded = False
+            FieldName = 'Observa'#231#227'o'
+            Width = 300
             Visible = True
           end>
       end
@@ -131,6 +136,7 @@ inherited frmBanheiro: TfrmBanheiro
         MaxLength = 2
         TabOrder = 2
         Text = ''
+        OnChange = edtDiureseChange
       end
       object edtEvacuacao: TLabeledEdit
         Left = 353
@@ -143,6 +149,7 @@ inherited frmBanheiro: TfrmBanheiro
         MaxLength = 2
         TabOrder = 3
         Text = ''
+        OnChange = edtEvacuacaoChange
       end
       object cbEvacuacao: TCheckBox
         Left = 200
@@ -169,6 +176,19 @@ inherited frmBanheiro: TfrmBanheiro
         ListField = 'NOME'
         ListSource = dtsClientes
         TabOrder = 6
+      end
+      object edtObservacao: TLabeledEdit
+        Left = 517
+        Top = 20
+        Width = 249
+        Height = 132
+        EditLabel.Width = 58
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Observa'#231#227'o'
+        MaxLength = 2
+        TabOrder = 7
+        Text = ''
+        OnChange = edtDiureseChange
       end
     end
   end
@@ -222,6 +242,10 @@ inherited frmBanheiro: TfrmBanheiro
     object qryListaCLIENTE_ID: TIntegerField
       FieldName = 'CLIENTE_ID'
       Visible = False
+    end
+    object qryListaOBSERVACAO: TMemoField
+      FieldName = 'Observa'#231#227'o'
+      BlobType = ftMemo
     end
   end
   object dtsClientes: TDataSource

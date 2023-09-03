@@ -29,6 +29,9 @@ type
     qryListaDATA_BANHEIRO: TDateTimeField;
     qryListaCLIENTE_ID: TIntegerField;
     qryListaNOME: TStringField;
+    qryListaOBSERVACAO: TMemoField;
+    memoObs: TMemo;
+    lblObs: TLabel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -37,6 +40,7 @@ type
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure gridListaDblClick(Sender: TObject);
     procedure edtEvacuacaoChange(Sender: TObject);
+    procedure edtDiureseChange(Sender: TObject);
   private
     { Private declarations }
     oBanheiro : TBanheiro;
@@ -73,6 +77,7 @@ begin
     cbDiurese.Checked := oBanheiro.Diurese = 'T';
     cbEvacuacao.Checked :=oBanheiro.Evacuacao = 'T';
     edtData.Date :=oBanheiro.DataBanheiro;
+    edtObservacao.Text := oBanheiro.Observacao;
     edtCliente.KeyValue := oBanheiro.ClienteId.ToString;
   end
   else
@@ -84,6 +89,16 @@ begin
   inherited;
 end;
 
+procedure TfrmBanheiro.edtDiureseChange(Sender: TObject);
+begin
+  if (edtDiurese.Text <> '') and (cbDiurese.Checked = False) then
+  begin
+    MessageDlg('Atenção! Para alterar a quantidade é necessário ter marcado o campo "Diurese?"', mtInformation,[mbOk],0);
+    edtDiurese.Text := '';
+    abort;
+  end;
+end;
+
 procedure TfrmBanheiro.edtEvacuacaoChange(Sender: TObject);
 begin
   if (edtEvacuacao.Text <> '') and (cbEvacuacao.Checked = False) then
@@ -92,7 +107,6 @@ begin
     edtEvacuacao.Text := '';
     abort;
   end;
-
 end;
 
 procedure TfrmBanheiro.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -189,6 +203,7 @@ begin
 
   oBanheiro.DataBanheiro := edtData.Date;
   oBanheiro.ClienteId := edtCliente.KeyValue;
+  oBanheiro.Observacao := edtObservacao.Text;
 
   if EstadoCadastro = ecNovo then
     Result := oBanheiro.Inserir

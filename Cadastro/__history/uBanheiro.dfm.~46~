@@ -21,6 +21,7 @@ inherited frmBanheiro: TfrmBanheiro
   inherited pgcPrincipal: TPageControl
     Width = 809
     Height = 268
+    ActivePage = tbManutencao
     ExplicitWidth = 805
     ExplicitHeight = 267
     inherited tbLista: TTabSheet
@@ -75,7 +76,7 @@ inherited frmBanheiro: TfrmBanheiro
           item
             Expanded = False
             FieldName = 'CLIENTE_ID'
-            Visible = True
+            Visible = False
           end>
       end
     end
@@ -132,6 +133,7 @@ inherited frmBanheiro: TfrmBanheiro
         MaxLength = 2
         TabOrder = 2
         Text = ''
+        OnChange = edtDiureseChange
       end
       object edtEvacuacao: TLabeledEdit
         Left = 353
@@ -144,6 +146,7 @@ inherited frmBanheiro: TfrmBanheiro
         MaxLength = 2
         TabOrder = 3
         Text = ''
+        OnChange = edtEvacuacaoChange
       end
       object cbEvacuacao: TCheckBox
         Left = 200
@@ -170,6 +173,19 @@ inherited frmBanheiro: TfrmBanheiro
         ListField = 'NOME'
         ListSource = dtsClientes
         TabOrder = 6
+      end
+      object edtObservacao: TLabeledEdit
+        Left = 517
+        Top = 20
+        Width = 249
+        Height = 132
+        EditLabel.Width = 95
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Quantidade Diurese'
+        MaxLength = 2
+        TabOrder = 7
+        Text = ''
+        OnChange = edtDiureseChange
       end
     end
   end

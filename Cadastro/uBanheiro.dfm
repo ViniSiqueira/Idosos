@@ -14,13 +14,14 @@ inherited frmBanheiro: TfrmBanheiro
       Hints.Strings = ()
     end
     inherited brnFechar: TBitBtn
-      Left = 695
-      ExplicitLeft = 691
+      Left = 691
+      ExplicitLeft = 687
     end
   end
   inherited pgcPrincipal: TPageControl
     Width = 809
     Height = 268
+    ActivePage = tbManutencao
     ExplicitWidth = 805
     ExplicitHeight = 267
     inherited tbLista: TTabSheet
@@ -37,12 +38,12 @@ inherited frmBanheiro: TfrmBanheiro
         Columns = <
           item
             Expanded = False
-            FieldName = 'BANHEIRO_ID'
+            FieldName = 'NOME'
             Visible = True
           end
           item
             Expanded = False
-            FieldName = 'NOME'
+            FieldName = 'BANHEIRO_ID'
             Visible = True
           end
           item
@@ -76,6 +77,12 @@ inherited frmBanheiro: TfrmBanheiro
             Expanded = False
             FieldName = 'CLIENTE_ID'
             Visible = False
+          end
+          item
+            Expanded = False
+            FieldName = 'Observa'#231#227'o'
+            Width = 300
+            Visible = True
           end>
       end
     end
@@ -95,6 +102,13 @@ inherited frmBanheiro: TfrmBanheiro
         Width = 54
         Height = 13
         Caption = 'Morador(a)'
+      end
+      object lblObs: TLabel
+        Left = 512
+        Top = 3
+        Width = 58
+        Height = 13
+        Caption = 'Observa'#231#227'o'
       end
       object edtCodigo: TLabeledEdit
         Tag = 1
@@ -173,6 +187,13 @@ inherited frmBanheiro: TfrmBanheiro
         ListSource = dtsClientes
         TabOrder = 6
       end
+      object memoObs: TMemo
+        Left = 512
+        Top = 20
+        Width = 254
+        Height = 132
+        TabOrder = 7
+      end
     end
   end
   inherited dtsLista: TDataSource
@@ -225,6 +246,11 @@ inherited frmBanheiro: TfrmBanheiro
     object qryListaCLIENTE_ID: TIntegerField
       FieldName = 'CLIENTE_ID'
       Visible = False
+    end
+    object qryListaOBSERVACAO: TMemoField
+      DisplayLabel = 'Observa'#231#227'o'
+      FieldName = 'OBSERVACAO'
+      BlobType = ftMemo
     end
   end
   object dtsClientes: TDataSource

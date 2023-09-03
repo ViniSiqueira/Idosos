@@ -75,7 +75,7 @@ inherited frmBanheiro: TfrmBanheiro
           item
             Expanded = False
             FieldName = 'CLIENTE_ID'
-            Visible = True
+            Visible = False
           end>
       end
     end
@@ -132,6 +132,7 @@ inherited frmBanheiro: TfrmBanheiro
         MaxLength = 2
         TabOrder = 2
         Text = ''
+        OnChange = edtDiureseChange
       end
       object edtEvacuacao: TLabeledEdit
         Left = 353
@@ -144,6 +145,7 @@ inherited frmBanheiro: TfrmBanheiro
         MaxLength = 2
         TabOrder = 3
         Text = ''
+        OnChange = edtEvacuacaoChange
       end
       object cbEvacuacao: TCheckBox
         Left = 200

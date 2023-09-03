@@ -29,6 +29,9 @@ type
     qryListaDATA_BANHEIRO: TDateTimeField;
     qryListaCLIENTE_ID: TIntegerField;
     qryListaNOME: TStringField;
+    qryListaOBSERVACAO: TMemoField;
+    memoObs: TMemo;
+    lblObs: TLabel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -74,6 +77,7 @@ begin
     cbDiurese.Checked := oBanheiro.Diurese = 'T';
     cbEvacuacao.Checked :=oBanheiro.Evacuacao = 'T';
     edtData.Date :=oBanheiro.DataBanheiro;
+    memoObs.Text := oBanheiro.Observacao;
     edtCliente.KeyValue := oBanheiro.ClienteId.ToString;
   end
   else
@@ -185,8 +189,16 @@ begin
   else
     oBanheiro.BanheiroId := 0;
 
-  oBanheiro.QtdDiurese := StrToInt(edtDiurese.Text);
-  oBanheiro.QtdEvacuacao := StrToInt(edtEvacuacao.Text);
+  if edtDiurese.Text = '' then
+    oBanheiro.QtdDiurese := 0
+  else  
+    oBanheiro.QtdDiurese := StrToInt(edtDiurese.Text);
+  
+  if edtEvacuacao.Text = '' then
+    oBanheiro.QtdEvacuacao := 0
+  else
+    oBanheiro.QtdEvacuacao := StrToInt(edtEvacuacao.Text);
+  
   if cbDiurese.Checked then
     oBanheiro.Diurese := 'T'
   else
@@ -199,6 +211,7 @@ begin
 
   oBanheiro.DataBanheiro := edtData.Date;
   oBanheiro.ClienteId := edtCliente.KeyValue;
+  oBanheiro.Observacao := memoObs.Text;
 
   if EstadoCadastro = ecNovo then
     Result := oBanheiro.Inserir
