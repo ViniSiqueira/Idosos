@@ -38,7 +38,7 @@ uses
 procedure TfrmMenuPrincipal.CriarConexaoBanco;
 var
   arquivoINI: TIniFile;
-  provider, integratedSecurity, persistSecurityInfo, initialCatalog, dataSource : string;
+  provider, integratedSecurity, persistSecurityInfo, userID, initialCatalog, dataSource, initialFileName, serverSPN : string;
 begin
   dtmConexao := TdtmConexao.Create(Self);
   try
@@ -46,8 +46,11 @@ begin
     provider := arquivoINI.ReadString('BANCO', 'Provider', 'Erro ao ler o valor');
     integratedSecurity := arquivoINI.ReadString('BANCO', 'Integrated Security', 'Erro ao ler o valor');
     persistSecurityInfo := arquivoINI.ReadString('BANCO', 'Persist Security Info', 'Erro ao ler o valor');
+    userID := arquivoINI.ReadString('BANCO', 'User ID', 'Erro ao ler o valor');
     initialCatalog := arquivoINI.ReadString('BANCO', 'Initial Catalog', 'Erro ao ler o valor');
     dataSource := arquivoINI.ReadString('BANCO', 'Data Source', 'Erro ao ler o valor');
+    initialFileName := arquivoINI.ReadString('BANCO', 'Initial File Name', 'Erro ao ler o valor');
+    serverSPN := arquivoINI.ReadString('BANCO', 'Server SPN', 'Erro ao ler o valor');
     arquivoINI.Free;
 
     dtmConexao.conexaoDB.ConnectionString :=

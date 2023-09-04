@@ -38,7 +38,7 @@ uses
 procedure TfrmMenuPrincipal.CriarConexaoBanco;
 var
   arquivoINI: TIniFile;
-  provider, integratedSecurity, persistSecurityInfo, initialCatalog, dataSource : string;
+  provider, integratedSecurity, persistSecurityInfo, userID, initialCatalog, dataSource, initialFileName, serverSPN : string;
 begin
   dtmConexao := TdtmConexao.Create(Self);
   try
