@@ -14,8 +14,8 @@ inherited frmBanheiro: TfrmBanheiro
       Hints.Strings = ()
     end
     inherited brnFechar: TBitBtn
-      Left = 691
-      ExplicitLeft = 687
+      Left = 687
+      ExplicitLeft = 683
     end
   end
   inherited pgcPrincipal: TPageControl
@@ -29,7 +29,7 @@ inherited frmBanheiro: TfrmBanheiro
       ExplicitHeight = 240
       inherited pnlCabecalho: TPanel
         Width = 801
-        ExplicitWidth = 797
+        ExplicitWidth = 801
       end
       inherited gridLista: TDBGrid
         Width = 801
@@ -144,6 +144,7 @@ inherited frmBanheiro: TfrmBanheiro
         EditLabel.Height = 13
         EditLabel.Caption = 'Quantidade Diurese'
         MaxLength = 2
+        NumbersOnly = True
         TabOrder = 2
         Text = ''
         OnChange = edtDiureseChange
@@ -157,6 +158,7 @@ inherited frmBanheiro: TfrmBanheiro
         EditLabel.Height = 13
         EditLabel.Caption = 'Quantidade Evacua'#231#227'o'
         MaxLength = 2
+        NumbersOnly = True
         TabOrder = 3
         Text = ''
         OnChange = edtEvacuacaoChange
