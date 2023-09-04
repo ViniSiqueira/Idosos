@@ -20,7 +20,7 @@ object frmMenuPrincipal: TfrmMenuPrincipal
     object menuCadatros: TMenuItem
       Caption = 'Cadastros'
       object menuClientes: TMenuItem
-        Caption = 'Morador(a)'
+        Caption = 'Clientes'
         OnClick = menuClientesClick
       end
       object N1: TMenuItem

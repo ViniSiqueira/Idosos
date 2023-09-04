@@ -1,5 +1,5 @@
 inherited frmCadastroClientes: TfrmCadastroClientes
-  Caption = 'Cadastro de Morador(a)'
+  Caption = 'Cadastro de Clientes'
   ClientHeight = 337
   ClientWidth = 733
   ExplicitWidth = 745
@@ -28,7 +28,7 @@ inherited frmCadastroClientes: TfrmCadastroClientes
       ExplicitHeight = 272
       inherited pnlCabecalho: TPanel
         Width = 725
-        ExplicitWidth = 721
+        ExplicitWidth = 725
       end
       inherited gridLista: TDBGrid
         Width = 725
