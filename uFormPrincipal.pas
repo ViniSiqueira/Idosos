@@ -75,6 +75,7 @@ end;
 
 procedure TfrmMenuPrincipal.menuBanheiroClick(Sender: TObject);
 begin
+  CriarConexaoBanco;
   frmBanheiro := TfrmBanheiro.Create(self);
   frmBanheiro.ShowModal;
   frmBanheiro.Release;
@@ -82,6 +83,7 @@ end;
 
 procedure TfrmMenuPrincipal.menuClientesClick(Sender: TObject);
 begin
+  CriarConexaoBanco;
   frmCadastroClientes := TfrmCadastroClientes.Create(self);
   frmCadastroClientes.ShowModal;
   frmCadastroClientes.Release;
