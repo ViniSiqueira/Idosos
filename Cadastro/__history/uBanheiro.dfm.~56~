@@ -14,8 +14,8 @@ inherited frmBanheiro: TfrmBanheiro
       Hints.Strings = ()
     end
     inherited brnFechar: TBitBtn
-      Left = 695
-      ExplicitLeft = 691
+      Left = 687
+      ExplicitLeft = 683
     end
   end
   inherited pgcPrincipal: TPageControl
@@ -79,7 +79,7 @@ inherited frmBanheiro: TfrmBanheiro
           end
           item
             Expanded = False
-            FieldName = 'Observa'#231#227'o'
+            FieldName = 'OBSERVACAO'
             Width = 300
             Visible = True
           end>
@@ -101,6 +101,13 @@ inherited frmBanheiro: TfrmBanheiro
         Width = 54
         Height = 13
         Caption = 'Morador(a)'
+      end
+      object lblObs: TLabel
+        Left = 512
+        Top = 3
+        Width = 58
+        Height = 13
+        Caption = 'Observa'#231#227'o'
       end
       object edtCodigo: TLabeledEdit
         Tag = 1
@@ -136,6 +143,7 @@ inherited frmBanheiro: TfrmBanheiro
         EditLabel.Height = 13
         EditLabel.Caption = 'Quantidade Diurese'
         MaxLength = 2
+        NumbersOnly = True
         TabOrder = 2
         Text = ''
         OnChange = edtDiureseChange
@@ -149,6 +157,7 @@ inherited frmBanheiro: TfrmBanheiro
         EditLabel.Height = 13
         EditLabel.Caption = 'Quantidade Evacua'#231#227'o'
         MaxLength = 2
+        NumbersOnly = True
         TabOrder = 3
         Text = ''
         OnChange = edtEvacuacaoChange
@@ -179,18 +188,12 @@ inherited frmBanheiro: TfrmBanheiro
         ListSource = dtsClientes
         TabOrder = 6
       end
-      object edtObservacao: TLabeledEdit
-        Left = 517
+      object memoObs: TMemo
+        Left = 512
         Top = 20
-        Width = 249
+        Width = 254
         Height = 132
-        EditLabel.Width = 58
-        EditLabel.Height = 13
-        EditLabel.Caption = 'Observa'#231#227'o'
-        MaxLength = 2
         TabOrder = 7
-        Text = ''
-        OnChange = edtDiureseChange
       end
     end
   end
@@ -246,8 +249,9 @@ inherited frmBanheiro: TfrmBanheiro
       Visible = False
     end
     object qryListaOBSERVACAO: TMemoField
-      FieldName = 'Observa'#231#227'o'
-      BlobType = ftMemo
+      DisplayLabel = 'Observa'#231#227'o'
+      FieldName = 'OBSERVACAO'
+      BlobType = ftWideString
     end
   end
   object dtsClientes: TDataSource

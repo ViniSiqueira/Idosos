@@ -206,7 +206,9 @@ begin
     else if (Components[i]) is TDateEdit then
       TDateEdit(Components[i]).Date := Date
     else if (Components[i]) is TDBLookupComboBox then
-      TDBLookupComboBox(Components[i]).KeyValue := Null;
+      TDBLookupComboBox(Components[i]).KeyValue := Null
+    else if (Components[i]) is TMemo then
+      TMemo(Components[i]).Text := '';
   end;
 end;
 

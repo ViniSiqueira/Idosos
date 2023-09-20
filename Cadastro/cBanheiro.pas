@@ -150,7 +150,7 @@ begin
       FDiurese := tblBanheiro.FieldByName('DIURESE').AsString;
       FQtdEvacuacao := tblBanheiro.FieldByName('QTD_EVACUACAO').AsInteger;
       FEvacuacao := tblBanheiro.FieldByName('EVACUACAO').AsString;
-      FDataBanheiro := tblBanheiro.FieldByName('DATA').AsDateTime;
+      FDataBanheiro := tblBanheiro.FieldByName('DATA_BANHEIRO').AsDateTime;
       FClienteId := tblBanheiro.FieldByName('CLIENTE_ID').AsInteger;
       FObservacao := tblBanheiro.FieldByName('OBSERVACAO').AsString;
 

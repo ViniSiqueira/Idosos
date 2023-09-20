@@ -41,9 +41,11 @@ type
     procedure gridListaDblClick(Sender: TObject);
     procedure edtEvacuacaoChange(Sender: TObject);
     procedure edtDiureseChange(Sender: TObject);
+    procedure edtDataExit(Sender: TObject);
   private
     { Private declarations }
     oBanheiro : TBanheiro;
+    procedure ValidarCamposObrigatorios;
   public
     { Public declarations }
     function Apagar: Boolean; override;
@@ -89,23 +91,31 @@ begin
   inherited;
 end;
 
+procedure TfrmBanheiro.edtDataExit(Sender: TObject);
+begin
+  inherited;
+  if (edtData.Date > Now) then
+  begin
+    MessageDlg('Atenção! A data de utilização do banheiro não pode ser maior que o dia atual!', mtInformation,[mbOk],0);
+    abort;
+  end;
+end;
+
 procedure TfrmBanheiro.edtDiureseChange(Sender: TObject);
 begin
-  if (edtDiurese.Text <> '') and (cbDiurese.Checked = False) then
+  if (edtDiurese.Text <> '') and not (edtDiurese.Text = '0') and (cbDiurese.Checked = False) then
   begin
     MessageDlg('Atenção! Para alterar a quantidade é necessário ter marcado o campo "Diurese?"', mtInformation,[mbOk],0);
     edtDiurese.Text := '';
-    abort;
   end;
 end;
 
 procedure TfrmBanheiro.edtEvacuacaoChange(Sender: TObject);
 begin
-  if (edtEvacuacao.Text <> '') and (cbEvacuacao.Checked = False) then
+  if (edtEvacuacao.Text <> '') and not (edtEvacuacao.Text = '0') and (cbEvacuacao.Checked = False) then
   begin
     MessageDlg('Atenção! Para alterar a quantidade é necessário ter marcado o campo "Evacuou?"', mtInformation,[mbOk],0);
     edtEvacuacao.Text := '';
-    abort;
   end;
 end;
 
@@ -183,6 +193,7 @@ end;
 function TfrmBanheiro.Salvar(estadoCadastro: TEstadoCadastro): Boolean;
 begin
   Result := False;
+  ValidarCamposObrigatorios;
 
   if edtCodigo.Text <> EmptyStr then
     oBanheiro.BanheiroId := StrToInt(edtCodigo.Text)
@@ -195,7 +206,7 @@ begin
     oBanheiro.QtdDiurese := StrToInt(edtDiurese.Text);
   
   if edtEvacuacao.Text = '' then
-    oBanheiro.QtdEvacuacao := ''
+    oBanheiro.QtdEvacuacao := 0
   else
     oBanheiro.QtdEvacuacao := StrToInt(edtEvacuacao.Text);
   
@@ -217,6 +228,15 @@ begin
     Result := oBanheiro.Inserir
   else if EstadoCadastro = ecAlterar then
     Result := oBanheiro.Atualizar;
+end;
+
+procedure TfrmBanheiro.ValidarCamposObrigatorios;
+begin
+  if VarIsNull(edtCliente.KeyValue) then
+  begin
+    MessageDlg('Atenção! O campo morador(a) é obrigatório', mtInformation,[mbOk],0);
+    edtCliente.KeyValue := 1;
+  end;
 end;
 
 end.

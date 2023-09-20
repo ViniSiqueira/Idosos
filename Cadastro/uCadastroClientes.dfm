@@ -14,13 +14,14 @@ inherited frmCadastroClientes: TfrmCadastroClientes
       Hints.Strings = ()
     end
     inherited brnFechar: TBitBtn
-      Left = 623
-      ExplicitLeft = 619
+      Left = 611
+      ExplicitLeft = 607
     end
   end
   inherited pgcPrincipal: TPageControl
     Width = 733
     Height = 300
+    ActivePage = tbManutencao
     ExplicitWidth = 729
     ExplicitHeight = 299
     inherited tbLista: TTabSheet
@@ -142,6 +143,7 @@ inherited frmCadastroClientes: TfrmCadastroClientes
         NumGlyphs = 2
         CalendarStyle = csDialog
         TabOrder = 8
+        OnExit = edtDataNascimentoExit
       end
       object edtNome: TLabeledEdit
         Left = 3

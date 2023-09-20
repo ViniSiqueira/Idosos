@@ -14,13 +14,14 @@ inherited frmBanheiro: TfrmBanheiro
       Hints.Strings = ()
     end
     inherited brnFechar: TBitBtn
-      Left = 695
-      ExplicitLeft = 691
+      Left = 687
+      ExplicitLeft = 683
     end
   end
   inherited pgcPrincipal: TPageControl
     Width = 809
     Height = 268
+    ActivePage = tbManutencao
     ExplicitWidth = 805
     ExplicitHeight = 267
     inherited tbLista: TTabSheet
@@ -28,7 +29,7 @@ inherited frmBanheiro: TfrmBanheiro
       ExplicitHeight = 240
       inherited pnlCabecalho: TPanel
         Width = 801
-        ExplicitWidth = 797
+        ExplicitWidth = 801
       end
       inherited gridLista: TDBGrid
         Width = 801
@@ -46,6 +47,7 @@ inherited frmBanheiro: TfrmBanheiro
             Visible = True
           end
           item
+            Alignment = taCenter
             Expanded = False
             FieldName = 'DIURESE'
             Visible = True
@@ -56,6 +58,7 @@ inherited frmBanheiro: TfrmBanheiro
             Visible = True
           end
           item
+            Alignment = taCenter
             Expanded = False
             FieldName = 'EVACUACAO'
             Visible = True
@@ -73,7 +76,7 @@ inherited frmBanheiro: TfrmBanheiro
           item
             Expanded = False
             FieldName = 'CLIENTE_ID'
-            Visible = True
+            Visible = False
           end
           item
             Expanded = False
@@ -99,6 +102,13 @@ inherited frmBanheiro: TfrmBanheiro
         Width = 54
         Height = 13
         Caption = 'Morador(a)'
+      end
+      object lblObs: TLabel
+        Left = 512
+        Top = 3
+        Width = 58
+        Height = 13
+        Caption = 'Observa'#231#227'o'
       end
       object edtCodigo: TLabeledEdit
         Tag = 1
@@ -134,6 +144,7 @@ inherited frmBanheiro: TfrmBanheiro
         EditLabel.Height = 13
         EditLabel.Caption = 'Quantidade Diurese'
         MaxLength = 2
+        NumbersOnly = True
         TabOrder = 2
         Text = ''
         OnChange = edtDiureseChange
@@ -147,6 +158,7 @@ inherited frmBanheiro: TfrmBanheiro
         EditLabel.Height = 13
         EditLabel.Caption = 'Quantidade Evacua'#231#227'o'
         MaxLength = 2
+        NumbersOnly = True
         TabOrder = 3
         Text = ''
         OnChange = edtEvacuacaoChange
@@ -177,18 +189,12 @@ inherited frmBanheiro: TfrmBanheiro
         ListSource = dtsClientes
         TabOrder = 6
       end
-      object edtObservacao: TLabeledEdit
-        Left = 517
+      object memoObs: TMemo
+        Left = 512
         Top = 20
-        Width = 249
+        Width = 254
         Height = 132
-        EditLabel.Width = 58
-        EditLabel.Height = 13
-        EditLabel.Caption = 'Observa'#231#227'o'
-        MaxLength = 2
         TabOrder = 7
-        Text = ''
-        OnChange = edtDiureseChange
       end
     end
   end
@@ -244,7 +250,8 @@ inherited frmBanheiro: TfrmBanheiro
       Visible = False
     end
     object qryListaOBSERVACAO: TMemoField
-      FieldName = 'Observa'#231#227'o'
+      DisplayLabel = 'Observa'#231#227'o'
+      FieldName = 'OBSERVACAO'
       BlobType = ftMemo
     end
   end

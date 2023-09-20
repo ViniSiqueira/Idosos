@@ -29,7 +29,7 @@ inherited frmBanheiro: TfrmBanheiro
       ExplicitHeight = 240
       inherited pnlCabecalho: TPanel
         Width = 801
-        ExplicitWidth = 801
+        ExplicitWidth = 797
       end
       inherited gridLista: TDBGrid
         Width = 801
@@ -80,9 +80,9 @@ inherited frmBanheiro: TfrmBanheiro
           end
           item
             Expanded = False
-            FieldName = 'Observa'#231#227'o'
-            Width = 300
-            Visible = True
+            FieldName = 'OBSERVACAO'
+            Width = -1
+            Visible = False
           end>
       end
     end
@@ -134,6 +134,7 @@ inherited frmBanheiro: TfrmBanheiro
         NumGlyphs = 2
         CalendarStyle = csDialog
         TabOrder = 1
+        OnExit = edtDataExit
       end
       object edtDiurese: TLabeledEdit
         Left = 353
@@ -188,6 +189,7 @@ inherited frmBanheiro: TfrmBanheiro
         ListField = 'NOME'
         ListSource = dtsClientes
         TabOrder = 6
+        OnExit = edtClienteExit
       end
       object memoObs: TMemo
         Left = 512

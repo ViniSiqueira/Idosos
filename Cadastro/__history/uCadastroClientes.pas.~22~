@@ -160,4 +160,9 @@ begin
 
 end;
 
+procedure TfrmCadastroClientes.ValidarCamposObrigatorios(estadoCadastro: TEstadoCadastro);
+begin
+  
+end;
+
 end.

@@ -42,6 +42,7 @@ type
 
   private
     oCliente : TCadastroCliente;
+    procedure ValidarCamposObrigatorios(estadoCadastro: TEstadoCadastro);
   public
     function Apagar: Boolean; override;
     function Salvar(estadoCadastro: TEstadoCadastro): Boolean; override;
@@ -53,7 +54,7 @@ var
 implementation
 
 uses
-  uDtmConexao, cBuscaCEP;
+  cBuscaCEP;
 
 {$R *.dfm}
 
@@ -128,6 +129,8 @@ function TfrmCadastroClientes.Salvar(estadoCadastro: TEstadoCadastro): Boolean;
 begin
   Result := False;
 
+  ValidarCamposObrigatorios(estadoCadastro);
+
   if edtCodigo.Text <> EmptyStr then
     oCliente.ClienteId := StrToInt(edtCodigo.Text)
   else
@@ -148,6 +151,16 @@ begin
   else if EstadoCadastro = ecAlterar then
     Result := oCliente.Atualizar;
 
+end;
+
+procedure TfrmCadastroClientes.ValidarCamposObrigatorios(estadoCadastro: TEstadoCadastro);
+begin
+  if (edtDataNascimento.Date > Now) then
+  begin
+    MessageDlg('Atenção! A data de nascimento não pode ser maior que o dia atual!', mtInformation,[mbOk],0);
+    estadoCadastro := estadoCadastro;
+    abort;
+  end;
 end;
 
 end.
