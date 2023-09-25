@@ -17,6 +17,8 @@ type
     FDataBanheiro: TDateTime;
     FClienteId: Integer;
     FObservacao: String;
+    FAspectoDiurese: String;
+    FAspectoEvacuacao: String;
 
 
   public
@@ -36,6 +38,8 @@ type
     property Evacuacao: String read FEvacuacao write FEvacuacao;
     property DataBanheiro: TDateTime read FDataBanheiro write FDataBanheiro;
     property ClienteId: Integer read FClienteId write FClienteId;
+    property AspectoDiurese: String read FAspectoDiurese write FAspectoDiurese;
+    property AspectoEvacuacao: String read FAspectoEvacuacao write FAspectoEvacuacao;
     property Observacao: String read FObservacao write FObservacao;
   end;
 
@@ -78,7 +82,7 @@ begin
     qryAtualizarBanheiro.Connection := FConexaoDB;
     qryAtualizarBanheiro.SQL.Clear;
     qryAtualizarBanheiro.SQL.Add('UPDATE BANHEIRO SET QTD_DIURESE = :QTD_DIURESE, QTD_EVACUACAO = :QTD_EVACUACAO, DIURESE = :DIURESE,');
-    qryAtualizarBanheiro.SQL.Add('EVACUACAO = :EVACUACAO, DATA_BANHEIRO = :DATA_BANHEIRO, CLIENTE_ID = :CLIENTE_ID, OBSERVACAO = :OBSERVACAO');
+    qryAtualizarBanheiro.SQL.Add('EVACUACAO = :EVACUACAO, DATA_BANHEIRO = :DATA_BANHEIRO, CLIENTE_ID = :CLIENTE_ID, OBSERVACAO = :OBSERVACAO, ASPECTO_EVACUACAO = :ASPECTO_EVACUACAO, ASPECTO_DIURESE = :ASPECTO_DIURESE');
     qryAtualizarBanheiro.SQL.Add('WHERE BANHEIRO_ID = :BANHEIRO_ID');
     qryAtualizarBanheiro.Parameters.ParamByName('BANHEIRO_ID').Value  := FBanheiroId;
     qryAtualizarBanheiro.Parameters.ParamByName('QTD_DIURESE').Value  := FQtdDiurese;
@@ -88,6 +92,8 @@ begin
     qryAtualizarBanheiro.Parameters.ParamByName('DATA_BANHEIRO').Value  := FDataBanheiro;
     qryAtualizarBanheiro.Parameters.ParamByName('OBSERVACAO').Value  := FObservacao;
     qryAtualizarBanheiro.Parameters.ParamByName('CLIENTE_ID').Value  := FClienteId;
+    qryAtualizarBanheiro.Parameters.ParamByName('ASPECTO_EVACUACAO').Value  := FAspectoEvacuacao;
+    qryAtualizarBanheiro.Parameters.ParamByName('ASPECTO_DIURESE').Value  := FAspectoDiurese;
 
     try
       qryAtualizarBanheiro.ExecSQL;
@@ -109,8 +115,8 @@ begin
     Result := True;
     qryInserirBanheiro.Connection := FConexaoDB;
     qryInserirBanheiro.SQL.Clear;
-    qryInserirBanheiro.SQL.Add('INSERT INTO BANHEIRO(QTD_DIURESE, QTD_EVACUACAO, DIURESE, EVACUACAO, DATA_BANHEIRO, CLIENTE_ID, OBSERVACAO)');
-    qryInserirBanheiro.SQL.Add('VALUES(:QTD_DIURESE, :QTD_EVACUACAO, :DIURESE, :EVACUACAO, :DATA_BANHEIRO, :CLIENTE_ID, :OBSERVACAO)');
+    qryInserirBanheiro.SQL.Add('INSERT INTO BANHEIRO(QTD_DIURESE, QTD_EVACUACAO, DIURESE, EVACUACAO, DATA_BANHEIRO, CLIENTE_ID, ASPECTO_EVACUACAO, ASPECTO_DIURESE, OBSERVACAO)');
+    qryInserirBanheiro.SQL.Add('VALUES(:QTD_DIURESE, :QTD_EVACUACAO, :DIURESE, :EVACUACAO, :DATA_BANHEIRO, :CLIENTE_ID, :ASPECTO_EVACUACAO, :ASPECTO_DIURESE, :OBSERVACAO)');
     qryInserirBanheiro.Parameters.ParamByName('QTD_DIURESE').Value  := FQtdDiurese;
     qryInserirBanheiro.Parameters.ParamByName('QTD_EVACUACAO').Value  := FQtdEvacuacao;
     qryInserirBanheiro.Parameters.ParamByName('DIURESE').Value  := FDiurese;
@@ -118,6 +124,8 @@ begin
     qryInserirBanheiro.Parameters.ParamByName('DATA_BANHEIRO').Value  := FDataBanheiro;
     qryInserirBanheiro.Parameters.ParamByName('CLIENTE_ID').Value  := FClienteId;
     qryInserirBanheiro.Parameters.ParamByName('OBSERVACAO').Value  := FObservacao;
+    qryInserirBanheiro.Parameters.ParamByName('ASPECTO_EVACUACAO').Value  := FAspectoEvacuacao;
+    qryInserirBanheiro.Parameters.ParamByName('ASPECTO_DIURESE').Value  := FAspectoDiurese;
 
     try
       qryInserirBanheiro.ExecSQL;
@@ -153,6 +161,8 @@ begin
       FDataBanheiro := tblBanheiro.FieldByName('DATA_BANHEIRO').AsDateTime;
       FClienteId := tblBanheiro.FieldByName('CLIENTE_ID').AsInteger;
       FObservacao := tblBanheiro.FieldByName('OBSERVACAO').AsString;
+      FAspectoEvacuacao := tblBanheiro.FieldByName('ASPECTO_EVACUACAO').AsString;
+      FAspectoDiurese := tblBanheiro.FieldByName('ASPECTO_DIURESE').AsString;
 
     except
       Result := False;

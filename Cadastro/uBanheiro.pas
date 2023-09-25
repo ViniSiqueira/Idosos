@@ -32,6 +32,10 @@ type
     qryListaOBSERVACAO: TMemoField;
     memoObs: TMemo;
     lblObs: TLabel;
+    qryListaASPECTO_EVACUACAO: TStringField;
+    qryListaASPECTO_DIURESE: TStringField;
+    edtAspDiurese: TLabeledEdit;
+    edtAspEvacuacao: TLabeledEdit;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -80,6 +84,8 @@ begin
     cbEvacuacao.Checked :=oBanheiro.Evacuacao = 'T';
     edtData.Date :=oBanheiro.DataBanheiro;
     memoObs.Text := oBanheiro.Observacao;
+    edtAspDiurese.Text := oBanheiro.AspectoDiurese;
+    edtAspEvacuacao.Text := oBanheiro.AspectoEvacuacao;
     edtCliente.KeyValue := oBanheiro.ClienteId.ToString;
   end
   else
@@ -237,6 +243,8 @@ begin
     oBanheiro.ClienteId := 0;
     
   oBanheiro.Observacao := memoObs.Text;
+  oBanheiro.AspectoEvacuacao := edtAspEvacuacao.Text;
+  oBanheiro.AspectoDiurese:= edtAspDiurese.Text;
 
   if EstadoCadastro = ecNovo then
     Result := oBanheiro.Inserir

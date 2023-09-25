@@ -17,7 +17,7 @@ type
     FEstado: String;
     FCEP: String;
     FTelefone: String;
-    FEmail: String;
+    FDataChegada: TDateTime;
     FDataNascimento: TDateTime;
 
   public
@@ -38,7 +38,7 @@ type
     property Estado: String read FEstado write FEstado;
     property CEP: String read FCEP write FCEP;
     property Telefone: String read FTelefone write FTelefone;
-    property Email: String read FEmail write FEmail;
+    property DataChegada: TDateTime read FDataChegada write FDataChegada;
     property DataNascimento: TDateTime read FDataNascimento write FDataNascimento;
   end;
 
@@ -82,7 +82,7 @@ begin
     qryAtualizarCliente.SQL.Clear;
     qryAtualizarCliente.SQL.Add('UPDATE CLIENTES SET NOME = :NOME, ENDERECO = :ENDERECO, CIDADE = :CIDADE,');
     qryAtualizarCliente.SQL.Add('BAIRRO = :BAIRRO, ESTADO = :ESTADO, CEP = :CEP, TELEFONE = :TELEFONE, ');
-    qryAtualizarCliente.SQL.Add('EMAIL = :EMAIL, DATA_NASCIMENTO = :DATA_NASCIMENTO');
+    qryAtualizarCliente.SQL.Add('DATA_CHEGADA = :DATA_CHEGADA, DATA_NASCIMENTO = :DATA_NASCIMENTO');
     qryAtualizarCliente.SQL.Add('WHERE CLIENTE_ID = :CLIENTE_ID');
     qryAtualizarCliente.Parameters.ParamByName('CLIENTE_ID').Value  := FClienteId;
     qryAtualizarCliente.Parameters.ParamByName('NOME').Value  := FNome;
@@ -92,7 +92,7 @@ begin
     qryAtualizarCliente.Parameters.ParamByName('ESTADO').Value  := FEstado;
     qryAtualizarCliente.Parameters.ParamByName('CEP').Value  := FCEP;
     qryAtualizarCliente.Parameters.ParamByName('TELEFONE').Value  := FTelefone;
-    qryAtualizarCliente.Parameters.ParamByName('EMAIL').Value  := FEmail;
+    qryAtualizarCliente.Parameters.ParamByName('DATA_CHEGADA').Value  := FDataChegada;
     qryAtualizarCliente.Parameters.ParamByName('DATA_NASCIMENTO').Value  := FDataNascimento;
 
     try
@@ -115,8 +115,8 @@ begin
     Result := True;
     qryInserirCliente.Connection := FConexaoDB;
     qryInserirCliente.SQL.Clear;
-    qryInserirCliente.SQL.Add('INSERT INTO CLIENTES(NOME, ENDERECO, CIDADE, BAIRRO, ESTADO, CEP, TELEFONE, EMAIL, DATA_NASCIMENTO)');
-    qryInserirCliente.SQL.Add('VALUES(:NOME, :ENDERECO, :CIDADE, :BAIRRO, :ESTADO, :CEP, :TELEFONE, :EMAIL, :DATA_NASCIMENTO)');
+    qryInserirCliente.SQL.Add('INSERT INTO CLIENTES(NOME, ENDERECO, CIDADE, BAIRRO, ESTADO, CEP, TELEFONE, DATA_CHEGADA, DATA_NASCIMENTO)');
+    qryInserirCliente.SQL.Add('VALUES(:NOME, :ENDERECO, :CIDADE, :BAIRRO, :ESTADO, :CEP, :TELEFONE, :DATA_CHEGADA, :DATA_NASCIMENTO)');
     qryInserirCliente.Parameters.ParamByName('NOME').Value  := FNome;
     qryInserirCliente.Parameters.ParamByName('ENDERECO').Value  := FEndereco;
     qryInserirCliente.Parameters.ParamByName('CIDADE').Value  := FCidade;
@@ -124,7 +124,7 @@ begin
     qryInserirCliente.Parameters.ParamByName('ESTADO').Value  := FEstado;
     qryInserirCliente.Parameters.ParamByName('CEP').Value  := FCEP;
     qryInserirCliente.Parameters.ParamByName('TELEFONE').Value  := FTelefone;
-    qryInserirCliente.Parameters.ParamByName('EMAIL').Value  := FEmail;
+    qryInserirCliente.Parameters.ParamByName('DATA_CHEGADA').Value  := FDataChegada;
     qryInserirCliente.Parameters.ParamByName('DATA_NASCIMENTO').Value  := FDataNascimento;
 
     try
@@ -161,7 +161,7 @@ begin
       FEstado := tblCliente.FieldByName('ESTADO').AsString;
       FCEP := tblCliente.FieldByName('CEP').AsString;
       FTelefone := tblCliente.FieldByName('TELEFONE').AsString;
-      FEmail := tblCliente.FieldByName('EMAIL').AsString;
+      FDataChegada := tblCliente.FieldByName('DATA_CHEGADA').AsDateTime;
       FDataNascimento := tblCliente.FieldByName('DATA_NASCIMENTO').AsDateTime;
 
     except

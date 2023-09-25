@@ -15,7 +15,6 @@ type
     edtNome: TLabeledEdit;
     edtEndereco: TLabeledEdit;
     edtCidade: TLabeledEdit;
-    edtEmail: TLabeledEdit;
     edtTelefone: TMaskEdit;
     edtBairro: TLabeledEdit;
     edtCep: TMaskEdit;
@@ -33,6 +32,9 @@ type
     qryListaTELEFONE: TStringField;
     qryListaEMAIL: TStringField;
     qryListaDATA_NASCIMENTO: TDateTimeField;
+    qryListaDATA_CASA: TDateTimeField;
+    edtDataChegada: TDateEdit;
+    lblDataChegada: TLabel;
 
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -72,7 +74,7 @@ begin
     edtEstado.Text := oCliente.Estado;
     edtCep.Text := oCliente.CEP;
     edtTelefone.Text := oCliente.Telefone;
-    edtEmail.Text := oCliente.Email;
+    edtDataChegada.Date := oCliente.DataChegada;
     edtDataNascimento.Date := oCliente.DataNascimento;
   end
   else
@@ -150,7 +152,7 @@ begin
   oCliente.Estado := edtEstado.Text;
   oCliente.CEP := edtCep.Text;
   oCliente.Telefone := edtTelefone.Text;
-  oCliente.Email := edtEmail.Text;
+  oCliente.DataChegada := edtDataChegada.Date;
   oCliente.DataNascimento := edtDataNascimento.Date;
 
   if EstadoCadastro = ecNovo then
